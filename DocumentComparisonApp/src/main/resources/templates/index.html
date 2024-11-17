@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Documents for Comparison</h1>
+
+        <!-- Form to upload sample and uploaded document -->
+        <form action="/compare" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="sampleFile">Sample Document:</label>
+                <input type="file" id="sampleFile" name="sampleFile" required accept=".docx" />
+            </div>
+            <div>
+                <label for="uploadedFile">Uploaded Document:</label>
+                <input type="file" id="uploadedFile" name="uploadedFile" required accept=".docx" />
+            </div>
+            <button type="submit">Compare</button>
+        </form>
+
+        <!-- Display the result or error message -->
+        <div id="result">
+            <p th:if="${result}" th:text="${result}"></p>
+        </div>
+        <div id="error">
+            <p th:if="${error}" th:text="${error}"></p>
+        </div>
+    </div>
+</body>
+</html>
